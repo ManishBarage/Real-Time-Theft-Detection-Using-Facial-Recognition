@@ -67,13 +67,6 @@ def click():
         image_of_michael = face_recognition.load_image_file('./img/known/Michael Jordan.jpg')
         michael_face_encoding = face_recognition.face_encodings(image_of_michael)[0]
 
-        image_of_varad = face_recognition.load_image_file('./img/known/Varad Kulkarni.jpg')
-        varad_face_encoding = face_recognition.face_encodings(image_of_varad)[0]
-
-        image_of_mark = face_recognition.load_image_file('./img/known/mark zukerberg.jpg')
-        mark_face_encoding = face_recognition.face_encodings(image_of_mark)[0]
-
-
         # Create array of encodings and names
         known_faces_encodings = [
             bill_face_encoding,
@@ -82,9 +75,7 @@ def click():
             obama_face_encoding,
             manish_face_encoding,
             donald_face_encoding,
-            michael_face_encoding,
-            varad_face_encoding,
-            mark_face_encoding
+            michael_face_encoding
         ]
 
         known_face_names = [
@@ -94,9 +85,7 @@ def click():
             "Barack Obama",
             "Manish Barage",
             "Donald Trump",
-            "Michael Jordan",
-            "Varad Kulkarni",
-            "Mark Zukerberg"
+            "Michael Jordan"
         ]
 
         # Load Face image to find faces in

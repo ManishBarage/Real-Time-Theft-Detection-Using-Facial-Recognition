@@ -3,7 +3,7 @@ from tkinter import *
 from PIL import ImageTk
 from tkinter import messagebox
 #from open import click
-from Pull_Faces import *
+#from Pull_Faces import *
 
 
 class login:
@@ -15,7 +15,7 @@ class login:
         self.root.resizable(False, False)
 
         # Bg Image
-        self.bg=ImageTk.PhotoImage(file="fg.jpg")
+        self.bg=ImageTk.PhotoImage(file="face1.png")
         self.bg_image=Label(self.root, image=self.bg).place(x=0, y=0, relwidth=1, relheight=1)
 
         # Login Frame

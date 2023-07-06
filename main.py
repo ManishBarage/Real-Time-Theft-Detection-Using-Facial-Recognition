@@ -5,14 +5,14 @@ import random
 from tkinter import font
 import face_recognition
 from PIL import Image, ImageDraw
-import PyQt5
+from PyQt5 import QtCore, QtGui, QtWidgets
 from PIL import ImageTk
 from tkinter import messagebox
 from tkinter.constants import COMMAND
 from PIL import Image
 from tkinter import filedialog
 import cv2
-#from matplotlib.pyplot import text
+from matplotlib.pyplot import text
 import numpy as np
 
 def click():
@@ -21,10 +21,10 @@ def click():
      def __init__(self):
          super(Root, self).__init__()
          self.title("Face Detector")
-         self.minsize(700, 400)
+         self.minsize(700,400)
 
          name=Label(text='Real Time Theft Detection Using Facial Recoginition', font=("Times new Roman",15),relief='ridge', bg='cadet blue', bd=6).place(x=90, y=10, width=500, height=40)
-         module=Label(text='Face Detector', font=("Times new Roman",18), bg="Orange").place(x=130, y=100, width=400, height=40)
+         module=Label(text='Face Detector', font=("Times new Roman",20), bg="Orange").place(x=130, y=100, width=400, height=40)
 
          self.labelFrame = ttk.LabelFrame(self, text = "Open File")
          #self.labelFrame.grid(column = 0, row = 1, padx = 20, pady = 20)
@@ -90,12 +90,6 @@ def click():
         image_of_keanu = face_recognition.load_image_file('./img/known/keanu reeves.jpg')
         keanu_face_encoding = face_recognition.face_encodings(image_of_keanu)[0]
 
-        image_of_varad = face_recognition.load_image_file('./img/known/Varad Kulkarni.jpg')
-        varad_face_encoding = face_recognition.face_encodings(image_of_varad)[0]
-
-        image_of_mark = face_recognition.load_image_file('./img/known/mark zukerberg.jpg')
-        mark_face_encoding = face_recognition.face_encodings(image_of_mark)[0]
-
 
         # Create array of encodings and names
         known_faces_encodings = [
@@ -112,9 +106,7 @@ def click():
             pm_face_encoding,
             tony_face_encoding,
             mark_face_encoding,
-            keanu_face_encoding,
-            varad_face_encoding,
-            mark_face_encoding
+            keanu_face_encoding
         ]
 
         known_face_names = [
@@ -131,8 +123,7 @@ def click():
             "Narendra Modi",
             "Robert Downey Jr",
             "Mark Wahlberg",
-            "Keanu Reeves",
-            "Varad Kulkarni"
+            "Keanu Reeves"
         ]
 
         # Load Face image to find faces in
@@ -181,14 +172,17 @@ def crop():
      def __init__(self):
          super(Root, self).__init__()
          self.title("Face Cropper")
-         self.minsize(700, 400)
+         self.minsize(700,300)
 
-         name=Label(text='Real Time Theft Detection Using Facial Recoginition', font=("Times new Roman",15),relief='ridge', bg='cadet blue', bd=6).place(x=90, y=10, width=500, height=40)
-         module=Label(text='Face Cropper', font=("Times new Roman",18), bg="Orange").place(x=130, y=100, width=400, height=40)
+         #self.bg = ImageTk.PhotoImage(file = "face2.jpg")
+         #self.bg_image = Label(self.root,image = self.bg).place(x = 0,y = 0,relwidth = 1,relheight = 1)
+
+         name=Label(text='Real Time Theft Detection Using Facial Recoginition', font=("cambria",15),relief='ridge', bg='black',fg='white', bd=6).place(x=90, y=40, width=500, height=40)
+         module=Label(text='Face Cropper', font="cambria 20 bold italic", bg="lightgreen",fg='red').place(x=130, y=135, width=400, height=40)
 
          self.labelFrame = ttk.LabelFrame(self, text = "Open File")
          #self.labelFrame.grid(column = 0, row = 1, padx = 20, pady = 20)
-         self.labelFrame.place(x=280, y=150)
+         self.labelFrame.place(x=270, y=200)
 
          self.button()
 
@@ -196,7 +190,7 @@ def crop():
 
      def button(self):
         self.button = ttk.Button(self.labelFrame, text = "Browse A File",command = self.fileDialog)
-        self.button.grid(column = 1, row = 1)
+        self.button.grid(column = 1, row = 2)
 
 
      def fileDialog(self):
@@ -204,7 +198,7 @@ def crop():
         self.filename = filedialog.askopenfilename(initialdir =  "/", title = "Select A File", filetype =
         (("jpeg files","*.jpg"),("all files","*.*")) )
         self.label = ttk.Label(self.labelFrame, text = "")
-        self.label.grid(column = 1, row = 2)
+        self.label.grid(column = 0, row = 4)
         self.label.configure(text = self.filename)
 
 
@@ -351,32 +345,32 @@ class login:
 
     
         # Bg Image
-        self.bg=ImageTk.PhotoImage(file="fg.jpg")
+        self.bg=ImageTk.PhotoImage(file="face2.jpg")
         self.bg_image=Label(self.root, image=self.bg).place(x=0, y=0, relwidth=1, relheight=1)
 
         # Login Frame
-        Frame_login = LabelFrame(self.root, width=800, height=400,font=("arial", 20, "bold"), relief='ridge', bg='cadet blue', bd=20)
+        Frame_login = LabelFrame(self.root, width=800, height=400,font=("arial", 20, "bold"), relief='ridge', bg='DarkOrchid', bd=10)
         Frame_login.place(x=210, y=150)
 
         
 
-        header = Label(text="Real Time Theft Detection Using Facial Recoginition", font=("Goudy old style",28), fg="black", bg="orange").place(x=220, y=30)
-        
-        title = Label(Frame_login, text="Security Login Page", font=("Goudy old style", 35, "bold"), fg="black", bg="cadet blue").place(x=220, y=30)
+        header = Label(text="Real Time Theft Detection Using Facial Recoginition", font=("Lucida Calligraphy",24), fg="black", bg="cyan").place(x=170, y=50)
+
+        title = Label(Frame_login, text="Security Login Page", font=("cambria", 40, "bold","italic"), fg="black", bg="DarkOrchid").place(x=160, y=30)
        # desc = Label(Frame_login, text="Detector Security Login area", font=("Goudy old style", 15, "bold"), fg="#d25d17", bg="white").place(x=90, y=100)
 
-        lbl_user = Label(Frame_login, text="Username", font=("Goudy old style", 20, "bold"), fg="black", bg="cadet blue", bd=22).place(x=90, y=120)
-        self.txt_user = Entry(Frame_login, font=("times new roman", 15), bg="lightgray")
+        lbl_user = Label(Frame_login, text="Username", font=("cambria", 20, "bold"), fg="black", bg="DarkOrchid", bd=22).place(x=70, y=120)
+        self.txt_user = Entry(Frame_login, font=("times new roman", 20), bg="lightgray")
         self.txt_user.place(x=240, y=140, width=350, height=32)
 
-        lbl_pass = Label(Frame_login, text="Password", font=("Goudy old style", 20, "bold"), fg="black",bg="cadet blue", bd=22).place(x=90, y=190)
-        self.txt_pass = Entry(Frame_login, font=("arial", 15), bg="lightgray", show="*")
+        lbl_pass = Label(Frame_login, text="Password", font=("cambria", 20, "bold"), fg="black",bg="DarkOrchid", bd=22).place(x=70, y=190)
+        self.txt_pass = Entry(Frame_login, font=("arial", 20), bg="lightgray", show="*")
         self.txt_pass.place(x=240, y=210, width=350, height=32)
 
         #forget_btn = Button(Frame_login, text="Forget Password ?", cursor="hand2", bg="white", fg="#d77337", bd=0, font=("times new roman", 12)).place(x=90, y=280)
-        login_btn = Button(self.root,command=self.Login_function,cursor="hand2", text="Login", fg="white", bg="orange", font=("times new roman", 20)).place(x=400, y=470, width=180, height=40)
+        login_btn = Button(self.root,command=self.Login_function,cursor="hand2", text="Login", fg="white", bg="orange", font=("times new roman", 20)).place(x=450, y=450, width=180, height=40)
        # rest_btn = Button(self.root,cursor="hand2",command=self.iReset, text="Reset", fg="white", bg="orange", font=("times new roman", 20)).place(x=540, y=470, width=180, height=40)
-        exit_btn = Button(self.root,command=self.iExit,cursor="hand2", text="Exit", fg="white", bg="orange", font=("times new roman", 20)).place(x=700, y=470, width=180, height=40)
+        exit_btn = Button(self.root,command=self.iExit,cursor="hand2", text="Exit", fg="white", bg="red", font=("times new roman", 20)).place(x=650, y=450, width=180, height=40)
     
            
 
@@ -409,35 +403,45 @@ class login:
            self.menu_root = Tk()
            self.menu_root.title("Real Time Theft Detection Using Facial Recoginition")
            self.menu_root.geometry("1600x800+100+50")
-           self.menu_root.config(bg="cadet blue")
+           self.menu_root.config(bg="lightgray")
            
            '''# Bg Image
            self.menu_root.bg=ImageTk.PhotoImage(file="face.jpeg")
            self.menu_root.bg_image=Label(self.menu_root, image=self.menu_root.bg).place(x=0, y=0, relwidth=1, relheight=1)
            '''
            
-           Frame_menu = Label(self.menu_root, text="Menu Page", font=("Impact", 20), relief='ridge', bg='cadet blue', bd=16).place(x=500, y=30, width=420, height=60)
-            
+           Frame_menu = Label(self.menu_root, text="Real Time Theft Detection Using Facial Recoginition", font=("Algerian", 20), relief='ridge',fg="red" ,bg='black', bd=12).place(x=350, y=30, width=800, height=65)
 
-           count_btn = Button(self.menu_root, text="Face Counter", font="Impact 15", bg="skyblue", command=count).place(x=280, y=140, width=250, height=40)
-           cut_btn = Button(self.menu_root, text="Face Cutter", font="Impact 15", bg="skyblue", command=crop ).place(x=600, y=140, width=250, height=40)
-           camp_btn = Button(self.menu_root, text="Simple Comparison Tool", font="Impact 15", bg="skyblue", command=compare).place(x=950, y=140, width=250, height=40) 
+           count_btn = Button(self.menu_root, text="Face Counter", font="cambria 20 bold italic", bg="skyblue",command=count ).place(x=770, y=500, width=450, height=50)
+
+           logo_label = Label(self.menu_root, text="Other Modules",font="gorgia 20 bold italic",bg="lightgray", fg="black").place(x=770, y=100, width=500, height=100)
+
+           cut_btn = Button(self.menu_root, text="Face Cutter", font="cambria 20 bold italic", bg="skyblue", command=crop ).place(x=770, y=200, width=450, height=50)
+
+           #camp_btn = Button(self.menu_root, text="Simple Comparison Tool", font="cambria 20 bold italic", bg="skyblue", command=compare).place(x=770, y=300, width=450, height=50)
        
-           face_btn = Button(self.menu_root, text="Face Recognizer", font="Impact 15", bg="skyblue", command=click).place(x=280, y=400, width=250, height=40)
-           r_face_btn = Button(self.menu_root, text="Real TIme Face Recognizer", font="Impact 15", bg="skyblue").place(x=600, y=400, width=250, height=40)
-           age_btn = Button(self.menu_root, text="Age & Gender Detetor", font="Impact 15", bg="skyblue").place(x=950, y=400, width=250, height=40) 
+           face_btn = Button(self.menu_root, text="Face Recognizer", font="cambria 20 bold italic", bg="skyblue", command=click).place(x=770, y=300, width=450, height=50)
+
+           r_face_btn = Button(self.menu_root, text="Real Time Face Recognizer", font="cambria 20 bold italic", bg="skyblue").place(x=250, y=130, width=450, height=50)
+
+           age_btn = Button(self.menu_root, text="Age & Gender Detector", font="cambria 20 bold italic", bg="skyblue").place(x=770, y=400, width=450, height=50)
                    
-           logout_btn = Button(self.menu_root,command=self.logout, text="LOG OUT",  font="Impact 15", bg="red").place(x=620, y=700, width=180, height=40)
+           logout_btn = Button(self.menu_root,command=self.logout, text="LOG OUT !! ",  font="cambria 15 bold italic", bg="red").place(x=920, y=700, width=130, height=50)
 
-           counter_label = Label(self.menu_root, text="This is Face Counter Tool. \nThis Module will accept an image from user,\n and then after processing it will detect there\n are total how many faces in the provided\n image and display you the count.", font=("Times new Roman", 12), bg="yellow").place(x=250, y=190, width=300, height=200)
-           cutter_label = Label(self.menu_root, text="This is a simple Face Cutter Tool . \nWhich is a Simple part of our Project\n This Module will take image as a input from\n Operator. After receiving image it will start \nprocessing means start detecting face locations in \nimage.And after detection it crop exact faces \nfrom the image and will store it into the database", font=("Times new Roman", 12), bg="orange").place(x=570, y=190, width=300, height=200)
-           camp_label = Label(self.menu_root, text="This is a Simple Comparison Tool.\nJust Give locations of Images that you\n want to compare and press the \nbutton it will compare the images and show the message", font=("Times new Roman", 12), bg="yellow").place(x=920, y=190, width=300, height=200)
 
-           face_label = Label(self.menu_root, text="Face Detection Using Database .\nThis is another module in our system.\nThis is face recognizer that will process on\n database. This system will receive test image \nfrom operator that it want to be recognize.\nThen this system will start processing.", font=("Times new Roman", 12), bg="orange").place(x=250, y=450, width=300, height=200)
-           r_face_label = Label(self.menu_root, text=" This is main and important part of our system.\nAs name suggest it is a real time theft detector.\n After starting this module it will first access\n the webCam or attached camera of the respective \nsystem.And it will start capturing faces", font=("Times new Roman", 12), bg="yellow").place(x=570, y=450, width=300, height=200)
-           age_label = Label(self.menu_root, text="This is another module which is also real time \ndetector. As name suggest it will capture images \nfrom the web camera and start processing on\nthe face features and face encodings of the\nperson Infront of the camera & it will \ndisplay the Gender of that person and \nalso using these features it will predict the age \nof that person ", font=("Times new Roman", 12), bg="orange").place(x=920, y=450, width=300, height=200)
 
-           logo_label = Label(self.menu_root, text="---Real Time Theft Detection Using Facial Recoginition",font=("Times new Roman", 12),bg="cadet blue", fg="Black").place(x=1000, y=730, width=700, height=100)
+           #counter_label = Label(self.menu_root,text="", font=("Gorgia", 15)).place(x=200, y=210, width=300, height=200)
+           #This is Face Counter Tool. \nThis Module will accept an image from user,\n and then after processing it will detect there\n are total how many faces in the provided\n image and display you the count.
+           #cutter_label = Label(self.menu_root, text="", font=("Gorgia", 15), bg="orange").place(x=630, y=210, width=300, height=200)
+           #This is a simple Face Cutter Tool . \nWhich is a Simple part of our Project\n This Module will take image as a input from\n Operator. After receiving image it will start \nprocessing means start detecting face locations in \nimage.And after detection it crop exact faces \nfrom the image and will store it into the database
+           #camp_label = Label(self.menu_root, text="", font=("Gorgia", 15), bg="yellow").place(x=1070, y=210, width=300, height=200)
+            #This is a Simple Comparison Tool.\nJust Give locations of Images that you\n want to compare and press the \nbutton it will compare the images and show the message
+           #face_label = Label(self.menu_root, text="", font=("Georgia", 15), bg="orange").place(x=200, y=520, width=300, height=200)
+           #Face Detection Using Database .\nThis is another module in our system.\nThis is face recognizer that will process on\n database. This system will receive test image \nfrom operator that it want to be recognize.\nThen this system will start processing.
+           #r_face_label = Label(self.menu_root, text="", font=("Gorgia", 15), bg="yellow").place(x=630, y=520, width=300, height=200)
+           # This is main and important part of our system.\nAs name suggest it is a real time theft detector.\n After starting this module it will first access\n the webCam or attached camera of the respective \nsystem.And it will start capturing faces
+           #age_label = Label(self.menu_root, text="", font=("Gorgia", 15), bg="orange").place(x=1070, y=520, width=300, height=200)
+           #This is another module which is also real time \ndetector. As name suggest it will capture images \nfrom the web camera and start processing on\nthe face features and face encodings of the\nperson Infront of the camera & it will \ndisplay the Gender of that person and \nalso using these features it will predict the age \nof that person
 
            self.root.destroy()
            self.menu_root.mainloop() 
